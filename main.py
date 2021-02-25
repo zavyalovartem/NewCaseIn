@@ -3,8 +3,10 @@ from telegram.ext import CommandHandler
 import os
 import config
 
-updater = Updater(token=config.TOKEN, use_context=True)
-PORT = int(os.environ.get('PORT', '8443'))
+PORT = int(os.environ.get('PORT'))
+TOKEN = os.environ.get('TOKEN')
+URL = os.environ.get('URL')
+updater = Updater(token=TOKEN, use_context=True)
 dispatcher = updater.dispatcher
 
 
@@ -19,7 +21,7 @@ dispatcher.add_handler(start_handler)
 
 
 updater.start_webhook(listen="0.0.0.0",
-                      port=int(PORT),
-                      url_path=config.TOKEN)
-updater.bot.set_webhook(config.URL + config.TOKEN)
+                      port=PORT,
+                      url_path=TOKEN)
+updater.bot.set_webhook(URL + TOKEN)
 updater.idle()
