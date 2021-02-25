@@ -1,7 +1,6 @@
 from telegram.ext import Updater
 from telegram.ext import CommandHandler
 import os
-import config
 
 PORT = int(os.environ.get('PORT'))
 TOKEN = os.environ.get('TOKEN')
